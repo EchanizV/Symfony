@@ -4,6 +4,8 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use App\Entity\Todo;
+use Faker;
 
 class AppFixtures extends Fixture
 {
@@ -15,7 +17,7 @@ class AppFixtures extends Fixture
            for ($i = 0; $i < 50; $i++) {
                $todo[$i] = new Todo();
                $todo[$i]->setName($faker->name);
-               $todo[$i]->setDescription($faker->sentence());
+               $todo[$i]->setDescription($faker->text);
 
                $manager->persist($todo[$i]);
            }
