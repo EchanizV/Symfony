@@ -2,32 +2,61 @@
 
 {% block title %}Todo index{% endblock %}
 
+
 {% block body %}
     <h1>Todo index</h1>
 
-    <table class="table">
+     {{ form_start(form) }}
+
+    <input type="submit">
+    {{ form_end(form) }}
+
+<table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>description</th>
-                <th>actions</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for todo in todos %}
-            <tr>
-                <td>{{ todo.id }}</td>
-                <td>{{ todo.name }}</td>
-                <td>{{ todo.description }}</td>
-                <td>
-                    <a href="{{ path('app_todo_show', {'id': todo.id}) }}">show</a>
-                    <a href="{{ path('app_todo_edit', {'id': todo.id}) }}">edit</a>
-                </td>
-            </tr>
+            {% if isClicked is defined and isClicked %}
+                {% if todo.isDone != true %}
+                    <tr>
+                        <td>{{ todo.id }}</td>
+                        <td>{{ todo.name }}</td>
+                        <td>{{ todo.description }}</td>
+                        <td>À faire</td>
+                        <td>
+                            <a href="{{ path('app_todo_show', {'id': todo.id}) }}">show</a>
+                            <a href="{{ path('app_todo_edit', {'id': todo.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td>{{ todo.id }}</td>
+                    <td>{{ todo.name }}</td>
+                    <td>{{ todo.description }}</td>
+                    <td>
+                        {% if todo.isDone %}
+                            Fait
+                        {% else %}
+                            À faire
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('app_todo_show', {'id': todo.id}) }}">show</a>
+                        <a href="{{ path('app_todo_edit', {'id': todo.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% endif %}
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
