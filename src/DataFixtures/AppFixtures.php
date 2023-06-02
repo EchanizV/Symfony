@@ -19,7 +19,7 @@ class AppFixtures extends Fixture
                $todo[$i]->setName($faker->name);
                $todo[$i]->setDescription('Lorem Ipsum');
                $todo[$i]->setisDone(false);
-               $todo[$i]->setPriority(1);
+               $todo[$i]->setPriority();
 
                $manager->persist($todo[$i]);
            }
