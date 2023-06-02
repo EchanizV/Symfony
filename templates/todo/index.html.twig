@@ -20,6 +20,7 @@
                 <th>Status</th>
                 <th>Actions</th>
                 <th>Priorité</th>
+                <th>Utilisateur</th>
             </tr>
         </thead>
         <tbody>
@@ -54,6 +55,9 @@
                         <a href="{{ path('app_todo_edit', {'id': todo.id}) }}">edit</a>
                     </td>
                     <td> {{todo.priority.name}} </td>
+                    <td> {% if todo.user != null %}
+                        {{todo.user.name}} 
+                        {% endif %}</td>   
                 </tr>
             {% endif %}
         {% else %}
