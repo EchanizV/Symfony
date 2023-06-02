@@ -26,6 +26,9 @@ class Todo
     #[ORM\JoinColumn(nullable: false)]
     private ?Priority $priority = null;
 
+    #[ORM\ManyToOne(inversedBy: 'todos')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Todo
     public function setPriority(?Priority $priority): self
     {
         $this->priority = $priority;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
