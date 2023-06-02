@@ -19,6 +19,7 @@
                 <th>Description</th>
                 <th>Status</th>
                 <th>Actions</th>
+                <th>Priorité</th>
             </tr>
         </thead>
         <tbody>
@@ -52,6 +53,7 @@
                         <a href="{{ path('app_todo_show', {'id': todo.id}) }}">show</a>
                         <a href="{{ path('app_todo_edit', {'id': todo.id}) }}">edit</a>
                     </td>
+                    <td> {{todo.priority.name}} </td>
                 </tr>
             {% endif %}
         {% else %}
